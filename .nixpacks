@@ -1,3 +1,4 @@
+# Railway deployment configuration - updated for flattened structure
 [phases.setup]
 nixPkgs = ['nodejs', 'npm']
 
