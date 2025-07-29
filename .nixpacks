@@ -4,15 +4,13 @@ nixPkgs = ['nodejs', 'npm']
 [phases.install]
 cmds = [
   'npm install',
-  'cd frontend && npm install',
-  'cd ../backend && npm install'
+  'cd frontend && npm install'
 ]
 
 [phases.build]
 cmds = [
-  'cd frontend && npm run build',
-  'cd ../backend && npm run build || echo "Backend build skipped"'
+  'cd frontend && npm run build'
 ]
 
 [start]
-cmd = 'cd backend && npm start' 
+cmd = 'npm start' 
