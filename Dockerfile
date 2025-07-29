@@ -4,13 +4,13 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package files and lock files
 COPY package*.json ./
 COPY frontend/package*.json ./frontend/
 
 # Install dependencies
-RUN npm ci --only=production
-RUN cd frontend && npm ci --only=production
+RUN npm ci --omit=dev
+RUN cd frontend && npm ci --omit=dev
 
 # Copy source code
 COPY . .
