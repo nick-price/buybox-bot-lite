@@ -12,8 +12,19 @@ COPY frontend/package*.json ./frontend/
 RUN npm ci --omit=dev
 RUN cd frontend && npm ci --omit=dev
 
-# Copy source code
-COPY . .
+# Copy frontend directory structure
+COPY frontend/public ./frontend/public
+COPY frontend/src ./frontend/src
+COPY frontend/tailwind.config.js ./frontend/
+COPY frontend/postcss.config.js ./frontend/
+
+# Copy backend source code
+COPY index.js ./
+COPY config ./config
+COPY db ./db
+COPY routes ./routes
+COPY services ./services
+COPY utils ./utils
 
 # Build frontend
 RUN cd frontend && npm run build
