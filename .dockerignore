@@ -1,0 +1,36 @@
+# Exclude everything except backend
+*
+!backend/
+!backend/package*.json
+!backend/index.js
+!backend/config/
+!backend/db/
+!backend/routes/
+!backend/services/
+!backend/utils/
+
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+DEPLOYMENT.md
+FRONTEND_DEPLOYMENT.md
+
+# Scripts
+deploy.sh
+
+# Frontend (deployed separately to Vercel)
+frontend/
+
+# Environment files
+.env*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db 
