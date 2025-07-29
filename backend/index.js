@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -18,8 +17,8 @@ app.use((req, res, next) => {
 const allowedOrigins = [
   'http://localhost:3000', 
   'http://localhost:3001',
-  'https://buybox-bot-lite-production.up.railway.app',
-  'https://buybox-bot-lite.railway.app'
+  'https://buybox-bot-lite.vercel.app',
+  'https://buybox-bot-lite-frontend.vercel.app'
 ];
 
 app.use(cors({
@@ -35,11 +34,6 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
-
-// Serve static files from the React app build directory
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-}
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -125,17 +119,7 @@ app.get('/api/tracker/sales', authenticateUser, (req, res) => {
   });
 });
 
-// Catch all handler: send back React's index.html file for any non-API routes
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  });
-}
-
 app.listen(PORT, () => {
   console.log(`🚀 BuyBox Bot Lite backend running on port ${PORT}`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  if (process.env.NODE_ENV === 'production') {
-    console.log('📦 Serving frontend build files');
-  }
 });

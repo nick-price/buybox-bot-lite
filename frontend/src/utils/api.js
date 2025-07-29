@@ -4,7 +4,7 @@ import { getAuth } from 'firebase/auth';
 // Create axios instance with auth interceptor
 const api = axios.create({
   baseURL: process.env.NODE_ENV === 'production' 
-    ? window.location.origin 
+    ? 'https://buybox-bot-lite-production.up.railway.app'  // Railway backend URL
     : (process.env.REACT_APP_API_URL || 'http://localhost:5000'),
   timeout: 10000,
 });
